@@ -1,0 +1,202 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ede7c4;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 2px solid #674019;
+    box-shadow: 2px 1px 10px #674019;
+}
+
+header #logo {
+    font-weight: bold;
+    font-size: 24px;
+    color: #674019;
+    text-shadow: 2px 1px 10px #674019;
+}
+
+header #nav-bar ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+header #nav-bar ul li {
+    padding: 0 10px;
+    list-style: none;
+}
+
+header #nav-bar ul li a {
+    text-decoration: none;
+    color: #674019;
+    font-weight: bold;
+}
+
+header #nav-bar ul li:hover {
+    border-bottom: solid 2px #674019;
+}
+
+header #buttons #login-btn {
+    padding: 5px 10px;
+    border-radius: 10px;
+    border-style: none;
+
+}
+
+header #buttons #login-btn a {
+    text-decoration: none;
+    color: #674019;
+    font-weight: bold;
+}
+
+header #buttons #Register-btn a {
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: goldenrod;
+    text-decoration: none;
+    color: #674019;
+    font-weight: bold;
+}
+
+header #buttons #Register-btn {
+
+    border-radius: 10px;
+    background-color: goldenrod;
+    color: #674019;
+    border: none;
+    padding: 10px;
+}
+
+.form-container {
+    max-width: 750px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    background-color: #ede7c4;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #674019;
+}
+h2 {
+    color: #d4af37;
+    margin: 0 0 35px 0;
+    padding: 0;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+.form-group {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+.form-group label {
+    font-weight: 600;
+    color: #d4af37;
+    text-align: left;
+    padding-right: 15px;
+    white-space: nowrap;
+}
+
+/* All inputs and selects same width */
+input,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #d4af37;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #674019;
+    background-color: #fffaf0;
+    box-sizing: border-box;
+}
+
+/* Button */
+#saveBtn {
+    display: block;
+    margin: 30px auto 10px auto;
+    width: 40%;
+    padding: 14px;
+    background-color: goldenrod;
+    color: #222;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#saveBtn:hover {
+    background-color: #b8962e;
+}
+
+.heroSection {
+    min-width: 100%;
+    height: 76vh;
+    object-fit: cover;
+}
+
+/* here goes the style of the search input */
+.searchAssets {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    border-bottom: 2px solid #674019;
+    box-shadow: 2px 1px 10px #674019;
+}
+
+#search-input {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #d4af37;
+    border-radius: 5px;
+    display: block;
+    color: #674019;
+    background-color: #b8962e;
+    justify-content: flex-start;
+    height: 50px;
+}
+
+#add-asset-btn {
+    color: #674019;
+    background-color: #b8962e;
+    width: 20%;
+    justify-content: flex-start;
+    margin-left: 20px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+#type-btn {
+    color: #674019;
+    background-color: #b8962e;
+    width: 20%;
+    justify-content: flex-start;
+    margin-left: 20px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+#searchKarat {
+    color: #b8962e;
+    background-color: #674019;
+    width: 20%;
+    justify-content: flex-start;
+    margin-left: 20px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+#searchType {
+    color: #b8962e;
+    background-color: #674019;
+    width: 20%;
+    justify-content: flex-start;
+    margin-left: 20px;
+    height: 50px;
+    border-radius: 5px;
+}
