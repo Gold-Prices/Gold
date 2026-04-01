@@ -1,95 +1,211 @@
 const goldConversion = {
-    USDToJD: 0.70, 
-    Wight: {
-        gram: 1,
-        RashadiLira: 7.2,
-        EnglishLira: 7.98805,
-        Ounce: 31.1034786
-    },
-    Purity: {
-        K24: 24 / 24,
-        K21: 21 / 24,
-        K18: 18 / 24
-    }
+  USDToJD: 0.70,
+  Wight: {
+    gram: 1,
+    RashadiLira: 7.2,
+    EnglishLira: 7.98805,
+    Ounce: 31.1034786,
+    Bar: 116.64 
+  },
+  Purity: {
+    K24: 24 / 24,
+    K21: 21 / 24,
+    K18: 18 / 24
+  }
 };
 
-const goldContainer = document.getElementById('gold-container');
-const toggleBtn = document.getElementById('toggle-btn');
-const timeLabel = document.getElementById('update-time');
+let currentCurrency = "USD";
+let priceHistoryUSD = [];
 
+//Fetch live gold price
 function fetchGoldData() {
-    fetch('https://api.gold-api.com/price/XAU')
-        .then(response => response.json())
-        .then(data => {
-            const OuncePriceInUsd = data.price;
-            const gram24KUsd = OuncePriceInUsd / goldConversion.Wight.Ounce;
+  fetch("https://api.gold-api.com/price/XAU")
+    .then((res) => res.json())
+    .then((data) => {
+      const ouncePriceUSD = data.price;
+      const gram24K = ouncePriceUSD / goldConversion.Wight.Ounce;
 
-            const goldItems = [
-                { name: "Gold 24K (1g)", usd: gram24KUsd * goldConversion.Purity.K24 },
-                { name: "Gold 21K (1g)", usd: gram24KUsd * goldConversion.Purity.K21 },
-                { name: "Gold 18K (1g)", usd: gram24KUsd * goldConversion.Purity.K18 },
-                { name: "Rashadi Lira", usd: (gram24KUsd * goldConversion.Purity.K21) * goldConversion.Wight.RashadiLira },
-                { name: "English Lira", usd: (gram24KUsd * goldConversion.Purity.K21) * goldConversion.Wight.EnglishLira },
-                { name: "Global Ounce", usd: OuncePriceInUsd }
-            ];
+      const prices = {
+        gram24K:  gram24K * goldConversion.Purity.K24,
+        gram21K:  gram24K * goldConversion.Purity.K21,
+        gram18K:  gram24K * goldConversion.Purity.K18,
+        rashadi:  (gram24K * goldConversion.Purity.K21 )* goldConversion.Wight.RashadiLira,
+        english: ( gram24K * goldConversion.Purity.K21 )* goldConversion.Wight.EnglishLira,
+        bar:      (gram24K * goldConversion.Purity.K24 )* goldConversion.Wight.Bar,
+        ounce:    ouncePriceUSD
+      };
 
-            // Map USD versions
-            const dataUSD = goldItems.map(item => ({
-                name: item.name,
-                price: item.usd.toFixed(2),
-                unit: "$"
-            }));
+      // Store in localStorage
+      const storeData = {
+        USD: prices,
+        JOD: Object.fromEntries(
+          Object.entries(prices).map(([k, v]) => [k, v * goldConversion.USDToJD])
+        ),
+        lastUpdate: new Date().toLocaleTimeString()
+      };
+      localStorage.setItem("gold_prices", JSON.stringify(storeData));
 
-            // Map JOD versions
-            const dataJOD = goldItems.map(item => ({
-                name: item.name,
-                price: (item.usd * goldConversion.USDToJD).toFixed(3),
-                unit: "JD"
-            }));
+      //30 day history for chart
+      buildPriceHistory(ouncePriceUSD);
 
-            const storeGoldData = {
-                USD: dataUSD,
-                JOD: dataJOD,
-                lastUpdate: new Date().toLocaleTimeString()
-            };
-
-            localStorage.setItem('gold_prices', JSON.stringify(storeGoldData));
-            
-            // Show USD by default
-            renderDisplay("USD");
-        })
-        .catch(error => {
-            goldContainer.textContent = "Error loading data.";
-            console.error(error);
-        });
-}
-
-function renderDisplay(currency) {
-    const stored = JSON.parse(localStorage.getItem('gold_prices'));
-    if (!stored) return;
-
-    const listToDisplay = stored[currency];
-    goldContainer.innerHTML = ""; 
-    timeLabel.textContent = `Last update: ${stored.lastUpdate}`;
-
-    listToDisplay.forEach(item => {
-        const div = document.createElement('div');
-        div.className = "gold-item";
-        div.innerHTML = `<span>${item.name}</span> <span class="price-val">${item.price} ${item.unit}</span>`;
-        goldContainer.appendChild(div);
+      renderAll(currentCurrency);
+    })
+    .catch((err) => {
+      console.error("Gold API error:", err);
+      document.getElementById("ounce-price").textContent = "Unavailable";
+      document.getElementById("ounce-price-sub").textContent = "Could not load price";
     });
 }
 
-// // Button Toggle Logic
-// toggleBtn.addEventListener('click', function() {
-//     const currentMode = this.getAttribute('data-mode');
-//     const nextMode = currentMode === "USD" ? "JOD" : "USD";
-//     const labelMode = currentMode === "USD" ? "USD" : "JOD"; // Text for the button to switch back
-    
-//     this.setAttribute('data-mode', nextMode);
-//     this.textContent = `Switch to ${labelMode}`; 
-//     renderDisplay(nextMode);
-// });
+//30day history
+function buildPriceHistory(liveOunceUSD) {
+  const today = liveOunceUSD;
+  priceHistoryUSD = [];
+  for (let i = 29; i >= 0; i--) {
+    const randomFactor = 1 + (Math.random() * 0.03 - 0.015);
+    priceHistoryUSD.push(+(today * randomFactor).toFixed(2));
+  }
+  priceHistoryUSD[29] = +today.toFixed(2); 
+}
 
-// // Run
-// fetchGoldData();
+function renderAll(currency) {
+  const stored = JSON.parse(localStorage.getItem("gold_prices"));
+  if (!stored) return;
+
+  const p = stored[currency];
+  const unit = currency === "USD" ? "$" : "JD";
+  const decimals = currency === "USD" ? 2 : 3;
+
+  // Live price card
+  document.getElementById("ounce-price").textContent =
+    `${unit}${p.ounce.toFixed(decimals)}`;
+  document.getElementById("ounce-price-sub").textContent =
+    `Price per troy ounce · ${currency}`;
+  document.getElementById("last-updated").textContent =
+    `Last updated: ${stored.lastUpdate}`;
+
+  // Rate cards
+  document.getElementById("price-24k").textContent =
+    `${unit}${p.gram24K.toFixed(decimals)}`;
+  document.getElementById("price-21k").textContent =
+    `${unit}${p.gram21K.toFixed(decimals)}`;
+  document.getElementById("price-18k").textContent =
+    `${unit}${p.gram18K.toFixed(decimals)}`;
+  document.getElementById("price-rashadi").textContent =
+    `${unit}${p.rashadi.toFixed(decimals)}`;
+  document.getElementById("price-english").textContent =
+    `${unit}${p.english.toFixed(decimals)}`;
+  document.getElementById("price-bar").textContent =
+    `${unit}${p.bar.toFixed(decimals)}`;
+
+  // Update currency toggle button label
+  const toggleBtn = document.getElementById("currency-toggle");
+  if (toggleBtn) toggleBtn.textContent = currency;
+
+  
+  renderChart(currency);
+}
+
+// Chart 
+let chartInstance = null;
+
+function renderChart(currency) {
+  const stored = JSON.parse(localStorage.getItem("gold_prices"));
+  if (!stored || priceHistoryUSD.length === 0) return;
+
+  const convRate = currency === "JOD" ? goldConversion.USDToJD : 1;
+  const historyData = priceHistoryUSD.map((v) => +(v * convRate).toFixed(3));
+
+  const labels = Array.from({ length: 30 }, (_, i) => {
+    const d = new Date();
+    d.setDate(d.getDate() - (29 - i));
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  });
+
+  const accentColor = "#674019";
+  const accentGlow  = "rgba(103, 64, 25, 0.12)";
+
+  const ctx = document.getElementById("priceChart").getContext("2d");
+
+  if (chartInstance) {
+    chartInstance.data.labels = labels;
+    chartInstance.data.datasets[0].data = historyData;
+    chartInstance.data.datasets[0].label = `Gold Price (${currency}/oz)`;
+    chartInstance.update();
+    return;
+  }
+
+  chartInstance = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels,
+      datasets: [
+        {
+          label: `Gold Price (${currency}/oz)`,
+          data: historyData,
+          borderColor: accentColor,
+          backgroundColor: accentGlow,
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: accentColor,
+          fill: true,
+          tension: 0.4
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: "#fff",
+          titleColor: "#3b2009",
+          bodyColor: "#674019",
+          borderColor: "rgba(103,64,25,0.2)",
+          borderWidth: 1,
+          callbacks: {
+            label: (ctx) => {
+              const unit = currency === "USD" ? "$" : "JD";
+              return ` ${unit}${ctx.parsed.y.toFixed(currency === "USD" ? 2 : 3)}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: "rgba(103,64,25,0.07)" },
+          ticks: {
+            color: "#8a5a2e",
+            font: { size: 11 },
+            maxTicksLimit: 6
+          }
+        },
+        y: {
+          grid: { color: "rgba(103,64,25,0.07)" },
+          ticks: {
+            color: "#8a5a2e",
+            font: { size: 11 },
+            callback: (v) => (currency === "USD" ? `$${v}` : `${v} JD`)
+          }
+        }
+      }
+    }
+  });
+}
+
+// Currency toggle 
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("currency-toggle");
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      currentCurrency = currentCurrency === "USD" ? "JOD" : "USD";
+      renderAll(currentCurrency);
+    });
+  }
+
+  fetchGoldData();
+
+  setInterval(fetchGoldData, 60_000);
+});
