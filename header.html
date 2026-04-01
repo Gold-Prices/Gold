@@ -1,28 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/home.css">
-    <title>Header</title>
+  <title>Header</title>
+  <style>
+    /* ── Header ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 28px;
+      background-color: rgba(213, 185, 148, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(103, 64, 25, 0.28);
+      box-shadow: 0 2px 16px rgba(103, 64, 25, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      width: 160px;
+      height: auto;
+      display: block;
+    }
+
+    /* Nav */
+    #nav-bar nav ul {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #nav-bar nav ul li a {
+      display: block;
+      padding: 6px 14px;
+      text-decoration: none;
+      color: #3b2009;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.4px;
+      transition: color 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    #nav-bar nav ul li a:hover,
+    #nav-bar nav ul li a.active {
+      color: #674019;
+      border-bottom: 2px solid #674019;
+    }
+
+    /* Buttons */
+    #buttons {
+      display: flex;
+      align-items: center;
+      gap: -6px;
+    }
+
+    #login-btn {
+      padding: 8px 18px;
+      background: transparent;
+      border: 1px solid rgba(103, 64, 25, 0.4);
+      border-radius: 0;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    #login-btn a {
+      text-decoration: none;
+      color: #674019;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    #login-btn:hover {
+      background-color: rgba(103, 64, 25, 0.08);
+      border-color: #674019;
+    }
+
+    #Register-btn {
+      padding: 8px 18px;
+      background: linear-gradient(135deg, #d4a843, #b8862a);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    #Register-btn a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.4px;
+    }
+
+    #Register-btn:hover {
+      background: linear-gradient(135deg, #e0b84e, #c99330);
+      box-shadow: 0 4px 16px rgba(180, 130, 40, 0.3);
+      transform: translateY(-1px);
+    }
+  </style>
 </head>
 <body>
-     <header>
-        <div class="logo"><img src="/media/logo.png" alt="Gold Tracker" width="200px"></div>
-        <div id="nav-bar">
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">My Assets</a></li>
-                    <li><a href="#">News</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div id="buttons">
-            <button id="login-btn"><a href="#">Login</a></button>
-            <button id="Register-btn"><a href="#">Register</a></button>
-        </div>
-    </header>
-    
+  <header>
+    <div class="logo">
+      <img src="/media/logo.png" alt="Gold Tracker" />
+    </div>
+
+    <div id="nav-bar">
+      <nav>
+        <ul>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#">My Assets</a></li>
+          <li><a href="#">News</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div id="buttons">
+      <button id="login-btn"><a href="#">Login</a></button>
+      <button id="Register-btn"><a href="#">Register</a></button>
+    </div>
+  </header>
 </body>
 </html>
