@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --primary-color: #674019;
+    --secondary-color: #e5da9c;
+    --btn-color: goldenrod;
+    --bg-primary: #ede7c4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--bg-primary);
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: var(--primary-color);
+}
+
+h1{
+    font-family: "Saira", sans-serif;
+    margin: 10px auto;
+    background-color: var(--secondary-color);
+}
+
+.container {
+    width: 370px;
+    height: fit-content;
+    margin: 1% auto;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}
+
+.btns-header {
+    display: flex;
+    margin: 10px 0;
+}
+
+.btns-header button {
+    width: 50%;
+    height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.178);
+}
+
+.btns-header button:hover {
+    background-color: white;
+}
+
+.btns-header button.active {
+    background-color: white;
+}
+
+.content {
+    width: 90%;
+    margin: 0 auto;
+    background-color: var(--secondary-color);
+}
+
+form {
+    background-color: var(--secondary-color);
+}
+
+form label {
+    margin-top: 5px;
+    background-color: var(--secondary-color);
+    font-size: 14px;
+}
+
+.fields {
+    width: 100%;
+    height: 40px;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    border: 1px solid;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.fields:focus {
+    outline: none;
+}
+
+.gender {
+    display: flex;
+    background-color: var(--secondary-color);
+    align-items: baseline;
+}
+
+.gender label {
+    margin-right: 15px;
+}
+
+form button {
+    width: 100%;
+    height: 50px;
+    margin: 10px auto;
+    background-color: var(--btn-color);
+    border: 1px solid;
+    border-radius: 10px;
+    font-size: 20px;
+    letter-spacing: 0.1px;
+}
+
+.pass {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--secondary-color);
+}
+
+.pass a {
+    text-decoration: none;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    margin-top: 5px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    display: block;
+    margin-top: -5px;
+    margin-bottom: 5px;
+    background-color: var(--secondary-color);
+}
+
+.input-error {
+    border: 2px solid red !important;
+}
