@@ -7,7 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js" defer></script>
   <script src="goldPrices.js" defer></script>
   <script src="script.js" defer></script>
-
+  <script src="news.js" defer></script>
   <title>Gold Price Tracker Web App</title>
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -96,9 +96,59 @@
         <div class="col-12 col-md-4"><div class="news-card-skeleton"></div></div>
       </div>
     </div>
+    <script>
+    
+  function loadLatestNewsCards() {
+  const container = document.getElementById("news-cards-container");
+  const savedNews = localStorage.getItem("goldNews");
+
+  if (!savedNews) {
+    return;
+  }
+
+  const fallbackImages = [
+
+    "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600",
+  ];
+
+  function getRandomFallback() {
+    return fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
+  }
+
+  const articles = JSON.parse(savedNews).slice(0, 3);
+
+  if (articles.length === 0) {
+    container.innerHTML = `<div class="col-12 text-center text-muted">No news available.</div>`;
+    return;
+  }
+
+  container.innerHTML = articles.map(a => `
+    <div class="col-12 col-md-4">
+      <a href="${a.url}" target="_blank" class="text-decoration-none">
+        <div class="news-card h-100">
+          <img src="${a.image}" alt="${a.title}" 
+               class="w-100" 
+               style="height:180px; object-fit:cover; border-radius:8px 8px 0 0;"
+               onerror="this.src='/media/fallbackImge.avif'">
+          <div class="p-3">
+            <h6 class="news-card-title">${a.title}</h6>
+            <div class="news-card-time text-muted small mt-2">
+              ${new Date(a.publishedAt).toLocaleString()}
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  `).join("");
+}
+loadLatestNewsCards()
+
+    </script>
   </main>
 
   <div id="footer-placeholder"></div>
-
+<script>
+  const CURRENT_PAGE = window.location.pathname;
+</script>
 </body>
 </html>

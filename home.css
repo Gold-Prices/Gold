@@ -548,3 +548,33 @@ a:hover {
     text-align: center;
   }
 }
+#user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#user-name {
+    color: #674019;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+#logout-btn {
+    padding: 8px 18px;
+    background: linear-gradient(135deg, #d4a843, #b8862a);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.4px;
+}
+
+#logout-btn:hover {
+    background: linear-gradient(135deg, #e0b84e, #c99330);
+    box-shadow: 0 4px 16px rgba(180, 130, 40, 0.3);
+    transform: translateY(-1px);
+}
