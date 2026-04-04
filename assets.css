@@ -463,7 +463,6 @@ select {
 }
 
 .profit-loss small {
-
-  font-weight: normal;
-  font-size: 12px;
+    font-weight: normal;
+    font-size: 12px;
 }
