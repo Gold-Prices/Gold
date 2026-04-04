@@ -194,7 +194,6 @@ function renderChart(currency) {
     }
   });
 }
-
 // Currency toggle 
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("currency-toggle");

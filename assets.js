@@ -21,9 +21,6 @@ const priceError     = document.getElementById('priceError');
 const dateError      = document.getElementById('dateError');
 const imageError     = document.getElementById('imageError');
 
-
-
-
 const specialChars = /[^a-zA-Z0-9 ]/;
 
 function showError(span, message) {
@@ -35,9 +32,6 @@ function clearError(span) {
   span.textContent = '';
   span.style.display = 'none';
 }
-
-
-
 
 form.addEventListener('submit', function(event) {
   event.preventDefault();
@@ -129,10 +123,10 @@ if (!imageFile) {
   }
 }
 
-  // ✅ Stop here if anything failed
+  // Stop here if anything failed
   if (!isValid) return;
 
-  // ✅ Validation passed — now save
+  // Validation passed — now save
   const file = imageInput.files[0];
   const reader = new FileReader();
 
@@ -153,33 +147,37 @@ if (!imageFile) {
 
   reader.readAsDataURL(file);
 });
-
 function renderCard(asset) {
-    // 1. Find the container in your HTML where the cards should go
-    const cardContainer = document.getElementById('assetList');
+  const cardContainer = document.getElementById('assetList');
+  const card = document.createElement('div');
+  card.classList.add('gold-card');
 
-    // 2. Create a new 'div' element for the card
-    const card = document.createElement('div');
-    card.classList.add('gold-card'); // Add your CSS class for styling
+  // Calculate profit/loss
+  const pl = calculateProfitLoss(asset);
+  const plHTML = pl
+    ? `<div class="profit-loss ${pl.isProfit ? 'profit' : 'loss'}">
+         <span>${pl.isProfit ? '▲' : '▼'} ${pl.isProfit ? '+' : ''}${pl.percentage}%</span>
+         <small>Current Value: $${pl.currentValue}</small>
+       </div>`
+    : `<div class="profit-loss neutral">Price data unavailable</div>`;
 
-    // 3. Fill the card with HTML using Template Literals
-    card.innerHTML = `
-        <div class="card-image">
-            <img src="${asset.image || 'placeholder.png'}" alt="${asset.category}">
-        </div>
-        <div class="card-content">
-            <h3>${asset.category} <span class="karat-badge">${asset.karat}</span></h3>
-            <div class="card-stats">
-                <p><strong>Weight:</strong> ${asset.weight}g</p>
-                <p><strong>Price:</strong> $${asset.price}</p>
-                <p><strong>Date:</strong> ${asset.date}</p>
-            </div>
-            <button class="delete-btn" onclick="deleteAsset(${asset.id})">Remove</button>
-        </div>
-    `;
+  card.innerHTML = `
+    <div class="card-image">
+      <img src="${asset.image || 'placeholder.png'}" alt="${asset.category}">
+    </div>
+    <div class="card-content">
+      <h3>${asset.category} <span class="karat-badge">${asset.karat}</span></h3>
+      <div class="card-stats">
+        <p><strong>Weight:</strong> ${asset.weight}g</p>
+        <p><strong>Paid:</strong> $${asset.price}</p>
+        <p><strong>Date:</strong> ${asset.date}</p>
+      </div>
+      ${plHTML}
+      <button class="delete-btn" onclick="deleteAsset(${asset.id})">Remove</button>
+    </div>
+  `;
 
-    // 4. Inject the card into the page
-    cardContainer.appendChild(card);
+  cardContainer.appendChild(card);
 }
 function saveToLocalStorage(newAsset) {
     // 1. Retrieve the existing string data from storage
@@ -253,8 +251,6 @@ function filterAssets() {
 }
 //------------------------------------------------------------------------------------
 
-
-
 // Hide the form on page load
 AddAssetsDiv.classList.add('hidden');
 
@@ -270,8 +266,43 @@ addAssetBtn.addEventListener('click', () => {
     }
 });
 
+// Map each karat to its purity ratio
+const karatPurity = {
+  '24K': 24 / 24,
+  '22K': 22 / 24,
+  '21K': 21 / 24,
+  '18K': 18 / 24,
+  '14K': 14 / 24
+};
 
+function getCurrentGramPrice(karat) {
+  const stored = JSON.parse(localStorage.getItem('gold_prices'));
+  if (!stored) return null;
 
+  // Always calculate in USD
+  const gram24K = stored.USD.gram24K;
+  const purity  = karatPurity[karat];
+
+  if (!purity) return null;
+  return gram24K * purity;
+}
+
+function calculateProfitLoss(asset) {
+  const currentGramPrice = getCurrentGramPrice(asset.karat);
+  if (!currentGramPrice) return null;
+
+  const currentValue  = currentGramPrice * parseFloat(asset.weight);
+  const purchasePrice = parseFloat(asset.price);
+  const profitLoss    = currentValue - purchasePrice;
+  const percentage    = ((profitLoss / purchasePrice) * 100).toFixed(2);
+
+  return {
+    currentValue: currentValue.toFixed(2),
+    profitLoss:   profitLoss.toFixed(2),
+    percentage,
+    isProfit: profitLoss >= 0
+  };
+}
 
 // Load existing assets on page start
 window.addEventListener('load', function () {

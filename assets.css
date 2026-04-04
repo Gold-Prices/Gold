@@ -21,7 +21,6 @@ body
       top: 0;
       z-index: 1000;
     }
-
     /* Logo */
     .logo {
       display: flex;
@@ -45,6 +44,8 @@ body
 
     #nav-bar nav ul li a {
       display: block;
+      cursor: pointer;
+      margin: auto 0;
       padding: 6px 14px;
       text-decoration: none;
       color: #3b2009;
@@ -336,4 +337,34 @@ footer #copyRight{
     color: #674019;
     margin-top: 15px; 
 
+}
+.profit-loss {
+  margin: 10px 0;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.profit-loss.profit {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.profit-loss.loss {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.profit-loss.neutral {
+  background-color: #e2e3e5;
+  color: #383d41;
+  font-size: 13px;
+}
+
+.profit-loss small {
+  font-weight: normal;
+  font-size: 12px;
 }
