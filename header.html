@@ -7,9 +7,7 @@
   <title>Header</title>
   <style>
 
-    /* ══════════════════════════════════════
-       LIGHT MODE (default) — CSS variables
-    ══════════════════════════════════════ */
+    /* ── CSS Variables: Light (default) ── */
     :root {
       --header-bg:      rgba(213, 185, 148, 0.92);
       --header-border:  rgba(103, 64, 25, 0.28);
@@ -23,12 +21,8 @@
       --toggle-border:  rgba(103, 64, 25, 0.30);
     }
 
-    /* ══════════════════════════════════════
-       DARK MODE — overrides EVERYTHING
-       (header vars + home.css hardcoded colors)
-    ══════════════════════════════════════ */
+    /* ── Dark mode variable overrides ── */
     body.dark-mode {
-      /* Header variables */
       --header-bg:      rgba(22, 14, 6, 0.97);
       --header-border:  rgba(212, 168, 67, 0.20);
       --header-shadow:  rgba(0, 0, 0, 0.50);
@@ -39,70 +33,9 @@
       --toggle-bg:      rgba(212, 168, 67, 0.10);
       --toggle-text:    #d4a843;
       --toggle-border:  rgba(212, 168, 67, 0.30);
-
-      /* Page background & text (overrides home.css body) */
-      background-color: #140d04 !important;
-      color: #e8d5b0 !important;
-      background-image:
-        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(212, 168, 67, 0.07) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(212, 168, 67, 0.04) 0%, transparent 50%) !important;
     }
 
-    /* ── home.css: price-card, chart-card ── */
-    body.dark-mode .price-card,
-    body.dark-mode .chart-card {
-      background: linear-gradient(145deg, #1e1208 0%, #261507 100%);
-      border-color: rgba(212, 168, 67, 0.18);
-    }
-    body.dark-mode .price-card h6,
-    body.dark-mode .chart-card h6 { color: #c4a87e; }
-    body.dark-mode .price-card h2  { color: #d4a843; }
-    body.dark-mode .price-card #ounce-price-sub { color: #c4a87e; }
-    body.dark-mode .price-card #last-updated    { color: #8a6a3a; }
-
-    /* ── home.css: rate-card ── */
-    body.dark-mode .rate-card {
-      background: #1e1208;
-      border-color: rgba(212, 168, 67, 0.12);
-    }
-    body.dark-mode .rate-card.featured {
-      background: linear-gradient(145deg, #2a1a08, #1e1208);
-      border-color: #b8862a;
-    }
-    body.dark-mode .rate-label { color: #c4a87e; }
-    body.dark-mode .rate-value { color: #d4a843; }
-    body.dark-mode .rate-card small { color: #8a6a3a; }
-    body.dark-mode .rates-section-title,
-    body.dark-mode .news-section-title { color: #e8d5b0; }
-
-    /* ── home.css: news-card ── */
-    body.dark-mode .news-card {
-      background: linear-gradient(145deg, #1e1208 0%, #261507 100%);
-      border-color: rgba(212, 168, 67, 0.12);
-    }
-    body.dark-mode .news-card-title { color: #e8d5b0; }
-    body.dark-mode .news-card-desc  { color: #c4a87e; }
-    body.dark-mode .news-source {
-      color: #d4a843;
-      background: rgba(212, 168, 67, 0.08);
-      border-color: rgba(212, 168, 67, 0.20);
-    }
-    body.dark-mode .news-date { color: #8a6a3a; }
-    body.dark-mode .news-card-link { color: #d4a843; }
-    body.dark-mode .news-title-line {
-      background: linear-gradient(90deg, rgba(212,168,67,0.25), transparent);
-    }
-    body.dark-mode .news-card-skeleton {
-      background: linear-gradient(145deg, #1e1208 0%, #261507 100%);
-    }
-
-    /* ── home.css: user info / logout ── */
-    body.dark-mode #user-name  { color: #d4a843; }
-
-
-    /* ══════════════════════════════════════
-       HEADER STYLES
-    ══════════════════════════════════════ */
+    /* ── Header ── */
     header {
       display: flex;
       align-items: center;
@@ -120,7 +53,7 @@
     }
 
     .logo { display: flex; align-items: center; }
-    .logo img { width: 160px; height: auto; display: block; }
+    .logo img { width: 160px; height: auto; display: block; transition: opacity 0.2s; }
 
     #nav-bar nav ul {
       display: flex;
@@ -236,16 +169,6 @@
       #login-btn, #Register-btn { flex: 1; text-align: center; }
     }
   </style>
-
-  <!-- ✅ Prevent flash of wrong theme: runs before body paints -->
-  <script>
-    if (localStorage.getItem('theme') === 'dark') {
-      document.documentElement.classList.add('dark-pre');
-    }
-  </script>
-  <style>
-    html.dark-pre body { background-color: #140d04 !important; }
-  </style>
 </head>
 <body>
 
@@ -276,8 +199,6 @@
       </div>
     </div>
   </header>
-
-  
 
 </body>
 </html>
