@@ -3,7 +3,7 @@ const API_KEY = "383394a005fb0343cbc064d48b7d44f6";
 const CACHE_TIME = 15 * 60 * 1000;
 
 function fetchNews() {
-    const url = `https://corsproxy.io/?https://gnews.io/api/v4/search?q="gold price" OR XAU OR bullion&lang=en&max=13&apikey=${API_KEY}`;
+    const url = `https://corsproxy.io/?https://gnews.io/api/v4/search?q="gold price" OR XAU OR bullion&lang=en&max=10&apikey=${API_KEY}`;
 
     function isGoldNews(article) {
         const text = (article.title + " " + (article.description || "")).toLowerCase();
