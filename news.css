@@ -92,9 +92,6 @@ body {
 }
 
 /* Dark Mode */
-/* ══════════════════════════════════════════
-   DARK MODE — paste at bottom of news.css
-══════════════════════════════════════════ */
 
 body.dark-mode {
   background-color: #140d04 !important;

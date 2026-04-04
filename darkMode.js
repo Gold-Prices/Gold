@@ -63,11 +63,9 @@
     updateLogo();
   }
  
-  // ── 3. Attach on DOMContentLoaded ──
   document.addEventListener("DOMContentLoaded", () => {
     attachToggle();
  
-    // ── 4. Watch #header-placeholder for fetch()-injected headers ──
     const placeholder = document.getElementById("header-placeholder");
     if (!placeholder) return;
  

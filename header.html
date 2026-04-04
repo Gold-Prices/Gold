@@ -277,35 +277,7 @@
     </div>
   </header>
 
-  <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const icon      = toggleBtn.querySelector('.toggle-icon');
-    const label     = toggleBtn.querySelector('.toggle-label');
-
-    // Apply saved theme on load, then remove the early class
-    if (localStorage.getItem('theme') === 'dark') {
-      applyDark(false);
-    }
-    document.documentElement.classList.remove('dark-pre');
-
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.contains('dark-mode') ? applyLight() : applyDark(true);
-    });
-
-    function applyDark(save) {
-      document.body.classList.add('dark-mode');
-      icon.textContent  = '☀️';
-      label.textContent = 'Light';
-      if (save) localStorage.setItem('theme', 'dark');
-    }
-
-    function applyLight() {
-      document.body.classList.remove('dark-mode');
-      icon.textContent  = '🌙';
-      label.textContent = 'Dark';
-      localStorage.setItem('theme', 'light');
-    }
-  </script>
+  
 
 </body>
 </html>
