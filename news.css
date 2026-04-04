@@ -1,537 +1,3 @@
-
-
-* { padding: 0; margin: 0; font-family: Arial, Helvetica, sans-serif; } body { background-color: #ede7c4;; } .form-container { max-width: 750px; margin: 50px auto; padding: 30px 40px; background-color: #cdb899; border-radius: 8px; box-shadow: 0
-
-pasted
-
-make it responseve
-
-1:41 PM
-
-Reading the frontend design skill
-Reading the frontend design skill
-Here's your CSS made fully responsive with mobile-first breakpoints, adaptive grid layouts, and touch-friendly sizing:
-
-
-Created a file, read a file
-Created a file, read a file
-Here's what changed to make it fully responsive:
-
-Global fix: Added box-sizing: border-box to * so padding never breaks layouts.
-
-Form container — uses width: 90% so it never overflows on small screens, with padding scaling up at 480px and 768px.
-
-Form groups — stack vertically (flex-direction: column) on mobile, then switch to the two-column grid layout at 600px+.
-
-Search/filter bar — wraps onto multiple rows on mobile with flex-wrap: wrap. Search input takes full width on small screens, buttons split into pairs. Everything goes back to a single row at 768px+.
-
-Hero image — scales from 40vh on phones → 55vh on tablets → 76vh on desktop.
-
-Asset card grid — adapts across 4 breakpoints:
-
-Mobile: 1 column
-480px+: 2 columns
-900px+: 3 columns
-1200px+: 4 columns
-Buttons & text — slightly smaller on mobile for better touch targets and readability, scaling up on larger screens.
-
-Styles
-Code · CSS 
-
-* { margin: 0; padding: 0; box-sizing: border-box; } :root { --accent: #674019; --accent-light: #8a5a2e; --accent-dim: #4d2e10; --accent-glow: rgba(103, 64, 25, 0.10); --bg: #d9c4a8; --bg-2: #cdb899; --bg-3: #c0aa8a; --surface:
-
-pasted
-
-switch this to the dark theme just switch background color yo the text with the button that swithch that add it to the hedder
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/home.css">
-  <title>Header</title>
-  <style>
-    /* ── Header ── */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 28px;
-      background-color: rgba(213, 185, 148, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(103, 64, 25, 0.28);
-      box-shadow: 0 2px 16px rgba(103, 64, 25, 0.15);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    /* Logo */
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-    .logo img {
-      width: 160px;
-      height: auto;
-      display: block;
-    }
-
-    /* Nav */
-    #nav-bar nav ul {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    #nav-bar nav ul li a {
-      display: block;
-      padding: 6px 14px;
-      text-decoration: none;
-      color: #3b2009;
-      font-weight: 700;
-      font-size: 16px;
-      letter-spacing: 0.4px;
-      transition: color 0.2s;
-      border-bottom: 2px solid transparent;
-    }
-
-    #nav-bar nav ul li a:hover,
-#nav-bar nav ul li a.active {
-  color: #674019;
-  border-bottom: 2px solid #674019;
-}
-
-    /* Buttons */
-    #buttons {
-      display: flex;
-      align-items: center;
-      gap: -6px;
-    }
-
-    #login-btn {
-      padding: 8px 18px;
-      background: transparent;
-      border: 1px solid rgba(103, 64, 25, 0.4);
-      border-radius: 0;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: none;
-    }
-
-    #login-btn a {
-      text-decoration: none;
-      color: #674019;
-      font-weight: 700;
-      font-size: 16px;
-    }
-
-    #login-btn:hover {
-      background-color: rgba(103, 64, 25, 0.08);
-      border-color: #674019;
-    }
-
-    #Register-btn {
-      padding: 8px 18px;
-      background: linear-gradient(135deg, #d4a843, #b8862a);
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-
-    #Register-btn a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 700;
-      font-size: 16px;
-      letter-spacing: 0.4px;
-    }
-
-    #Register-btn:hover {
-      background: linear-gradient(135deg, #e0b84e, #c99330);
-      box-shadow: 0 4px 16px rgba(180, 130, 40, 0.3);
-      transform: translateY(-1px);
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="logo">
-      <img src="/media/logo.png" alt="Gold Tracker" />
-    </div>
-
-    <div id="nav-bar">
-      <nav>
-        <ul>
-          <li><a href="/index.html">Home</a></li>
-          <li><a id="asset-link" href="/login.html">My Assets</a></li>
-          <li><a href="/news.html">News</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <div id="buttons">
-      <button id="login-btn"><a href="login.html">Login</a></button>
-      <button id="Register-btn"><a href="register.html">Register</a></button>
-    </div>
-  </header>
- 
-</body>
-</html>
-Show more
-3:00 PM
-Here's the updated header with a dark theme toggle button added:
-
-
-Created a file, read a file
-Created a file, read a file
-Here's what was added and how it works:
-
-Toggle button — sits between the nav and auth buttons. Shows 🌙 Dark / ☀️ Light and flips on click.
-
-CSS variables — all colors in the header (background, text, borders, shadows) are driven by CSS variables defined in :root. The body.dark-mode block simply overrides those same variables, so the entire header transitions smoothly with no duplicated rules.
-
-Dark theme colors — deep near-black background (
-#1a1008), warm gold text (
-#d4a843), and subtle gold borders to keep the gold-tracker brand intact in both modes.
-
-Persistence — the choice is saved to localStorage, so the user's preference survives page refreshes and navigation between pages. Just paste the same <script> block (and the CSS variables) into each page's stylesheet/header.
-
-To apply dark mode to home.css — add the same :root variable block and body.dark-mode overrides to that file, replacing the hardcoded color values with the CSS variables.
-
-Header
-Code · HTML 
-
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="stylesheet" href="/home.css"> <title>Header</title> <style> /* ── CSS Variables: Light (default) ── */ :root { --header-b
-
-pasted
-
-there is a problem it is not working
-
-3:03 PM
-The issue is that the dark mode only affects the <body> tag in the header file, but your home.css uses hardcoded colors instead of CSS variables. The fix requires two things:
-
-Apply the saved theme before the page renders (avoid flash of wrong theme)
-Override home.css colors using body.dark-mode rules
-Here's the corrected header with full dark mode overrides for all home.css components:
-
-
-Created 2 files, ran a command, read a file
-Created 2 files, ran a command, read a file
-Here's exactly why it wasn't working before and what was fixed:
-
-Problem 1 — home.css uses hardcoded colors, not variables. The previous version only changed CSS variables on body.dark-mode, but home.css has hardcoded hex values like background: linear-gradient(145deg, var(--surface) ...) using its own variables that were never overridden. The fix adds explicit body.dark-mode .price-card, body.dark-mode .rate-card, etc. rules that force dark colors on every component.
-
-Problem 2 — Flash of light theme on page load. When the page loads, the browser paints the body before JS runs, causing a white/tan flash. The fix adds a tiny <script> in the <head> (before any content renders) that adds a dark-pre class to <html> immediately, which sets the background dark. The class is then removed once the full dark-mode is applied.
-
-For other pages in your project, paste these two blocks into each page's <head> and they'll share the same localStorage preference automatically:
-
-The body.dark-mode { ... } overrides block
-The flash-prevention <script> + <style> snippet
-Header
-Code · HTML 
-
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js" defer></script> <script src="goldPrices.js" defer></script> <scrip
-
-pasted
-
-still when connect it to the main it didnot work
-
-3:07 PM
-The issue is that your header is loaded into #header-placeholder via JavaScript (loadHeader or similar), but the dark mode script runs after the header loads. Also, the body.dark-mode class needs to be applied on every page, not just the header file.
-
-Can you share how you're loading the header into the placeholder? (the JS file that does fetch('/header.html') or similar)
-
-Q: How are you loading the header into #header-placeholder?
-A: fetch('header.html')     .then(response => response.text())     .then(data => {         document.getElementById('header-placeholder').innerHTML = data;          // Active nav         const path = window.location.pathname;         document.querySelectorAll("#nav-bar nav ul li a").forEach(link => {             link.classList.remove("active");             const href = link.getAttribute("href");             if (                 href === path ||                 (href === "/index.html" && (path === "/" || path === "/index.html"))             ) {                 link.classList.add("active");             }         });          // Show/hide buttons based on login state         const loggedInUser = sessionStorage.getItem("loggedInUser");         const loginBtn = document.getElementById("login-btn");         const registerBtn = document.getElementById("Register-btn");         const assetsbar=document.getElementById("asset-link");         if (loggedInUser) {        const user = JSON.parse(loggedInUser);        assetsbar.innerHTML=  <li><a id="asset-link" href="/assets.html">My Assets</a></li>;        loginBtn.style.display = "none";        registerBtn.style.display = "none";      const userInfo = document.createElement("div");     userInfo.id = "user-info";     userInfo.innerHTML =          <span id="user-name"><i class="fa-solid fa-user"></i> ${user.name || user.email}</span>         <button id="logout-btn">Logout</button>     ;      document.getElementById("buttons").appendChild(userInfo);      document.getElementById("logout-btn").addEventListener("click", () => {         sessionStorage.removeItem("loggedInUser");         window.location.href = "/index.html";     }); }     });       //footer fetch('footer.html')     .then(response => response.text())     .then(data => document.getElementById('footer-placeholder').innerHTML = data);
-
-Show more
-3:07 PM
-Got it. The problem is clear — the dark mode script is inside header.html, so it runs inside the fetch() callback, but <script> tags injected via innerHTML don't execute. That's a browser security rule.
-
-The fix: move all dark mode logic to a standalone darkMode.js file, and load it in every page's <head>.
-
-
-Standalone darkMode.js that works across all pages
-Standalone darkMode.js that works across all pages
-Now update index.html (and every other page) to include it — and move the dark mode CSS into home.css:
-
-
-Created a file, read a file
-Created a file, read a file
-Here's the full setup — 3 steps:
-
-Step 1 — Add darkMode.js to every page's <head> (before other scripts):
-
-html
-<script src="darkMode.js"></script>
-Step 2 — Paste darkmode-for-home.css contents at the bottom of home.css
-
-Step 3 — Remove the <script> block from header.html — the toggle logic now lives entirely in darkMode.js
-
-Why the old version didn't work: When you inject HTML via innerHTML (which is what fetch() does), the browser intentionally blocks any <script> tags inside it — they simply never run. The MutationObserver in darkMode.js solves this by watching the #header-placeholder div and wiring up the button the moment it appears in the DOM, no matter when the fetch completes.
-
-Darkmode
-JS 
-Darkmode for home
-Code · CSS 
-
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <script src="darkMode.js" defer></script> <title>Assets Page </title> <link rel="stylesheet" href="home.css"> <link rel="stylesh
-
-pasted
-
-and for all 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="home.css">
-      <script src="darkMode.js" defer></script>
-
-</head>
-<body>
-    <div class="container">
-        <h1>Gold Tracker</h1>
-        <div class="btns-header">
-            <button>Login</button>
-            <button>Sign Up</button>
-        </div>
-        <div class="content">
-            <form id="loginForm">
-                <label for="">Email</label>
-                <input type="email" id="loginEmail" placeholder="name@luxury-investor.com">
-                <small class="error"></small>
-                <div class="pass">
-                    <label for="">Password</label>
-                    <a href="">forget password</a>
-                </div>
-                <input type="password" id="loginPassword" placeholder="*********">
-                <small class="error"></small>
-                <a href="register.html">Make An Account</a>
-                <button type="submit">Login</button>
-            </form>
-        </div>
-        
-    </div>
-    <script src="login.js"></script>
-</body>
-</html>
-Show more
-3:13 PM
-The problem on these pages is that darkMode.js has defer, which means it runs after the DOM loads — but by then there's no #header-placeholder on the login page, and the body.dark-mode class isn't applied before the page paints.
-
-The fix: remove defer from darkMode.js so it runs instantly, and update the script to handle pages that don't have a header placeholder.
-
-
-Ran a command, created a file
-Ran a command, created a file
-Now here's exactly how to load it in each page:
-
-
-Created a file, read a file
-Created a file, read a file
-Two things to fix in your HTML files:
-
-1. Remove defer from the script tag on every page:
-
-html
-<!-- ❌ Wrong (your current code) -->
-<script src="darkMode.js" defer></script>
-
-<!-- ✅ Correct -->
-<script src="darkMode.js"></script>
-defer was the main culprit — it delays the script until after the page renders, so the dark class was applied too late causing a white flash, and on the login page the button was never found.
-
-2. The login page also needs a toggle button in its header. Right now login.html has no header at all — so there's nowhere to click to toggle. Either add the header fetch there too, or add a small standalone toggle button to login.html's layout. Let me know which you prefer and I'll add it.
-
-Darkmode
-JS 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Gold News</title>
-  <link rel="stylesheet" href="news.css">
-  <script src="script.js" defer></script>
-    <script src="darkMode.js" defer></script>
-
-</head>
-
-<body>
-
-<div id="header-placeholder"></div>
-
-<div id="head">🟡 Gold Tracker News</div>
-
-<div class="container">
-
-  <div id="mainNews" class="main-news"></div>
-
-  <div id="newsList" class="news-grid"></div>
-
-</div>
-
-<div id="footer-placeholder"></div>
-
-  <script src="news.js"></script>
-  <script>
-  const CURRENT_PAGE = window.location.pathname;
-</script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <script src="darkMode.js" defer></script>
-
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="register.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Gold Tracker</h1>
-        <div class="btns-header">
-            <button>Login</button>
-            <button>Sign Up</button>
-        </div>
-        <div class="content">
-            <form id="registerForm">
-                <label>Name</label>
-                <input type="text" id="name" class="fields" placeholder="Enter Your Name">
-                <small class="error"></small>
-
-                <label>Email</label>
-                <input type="email" id="email" class="fields" placeholder="name@luxury-investor.com">
-                <small class="error"></small>
-
-                <label>Phone</label>
-                <input type="text" id="phone" class="fields" placeholder="Enter Your Number">
-                <small class="error"></small>
-
-                <div class="gender">
-                    <label>Gender: </label>
-                    <input type="radio" name="gender" value="male">
-                    <label>Male</label>
-                    <input type="radio" name="gender" value="female">
-                    <label>Female</label>
-                    <small class="error"></small>
-                </div>
-
-                <label>Password</label>
-                <input type="password" id="password" class="fields" placeholder="Enter Complex Password">
-                <small class="error"></small>
-
-                <label>Confirm Password</label>
-                <input type="password" id="confirmPassword" class="fields" placeholder="Confirm Password">
-                <small class="error"></small>
-
-                <button type="submit">Sign Up</button>
-            </form>
-        </div>
-        
-    </div>
-
-    <script src="register.js"></script>
-</body>
-</html>
-Show more
-3:14 PM
-Same fix for all of them — remove defer from darkMode.js. Here are all your pages corrected:
-
-
-Created 2 files, read a file
-Created 2 files, read a file
-Two changes made to both files:
-
-1. Removed defer from darkMode.js — this is the only real fix needed. Here's a summary of the rule for your whole project:
-
-Script	Should use defer?
-darkMode.js	❌ Never
-script.js, news.js, assets.js etc.	✅ Yes, fine
-2. Added home.css to register.html — your dark mode overrides live in home.css, so without it the dark background and card colors won't apply on the register page.
-
-Do the same for login.html if you haven't already — add <link rel="stylesheet" href="home.css"> there too.
-
-News
-Code · HTML 
-Register
-Code · HTML 
-for the pages
-
-3:15 PM
-Which pages are you referring to? Can you share what's not working — for example:
-
-Dark mode not applying on a specific page?
-A page's CSS not switching colors correctly?
-Something else like layout or the toggle button not showing?
-Also, do you mean the login and register pages specifically (since they don't have the header fetch), or all pages in general?
-
-give me the dark mode for all the pages
-
-3:16 PM
-Share your CSS files for the pages that need dark mode and I'll write the overrides for all of them at once:
-
-login.css
-register.css
-news.css
-assets.css
-Or paste them all here and I'll handle everything in one go.
-
-
-* { padding: 0; margin: 0; font-family: Arial, Helvetica, sans-serif; box-sizing: border-box; } body { background-color: #ede7c4; } /* ── Form Container ── */ .form-container { max-width: 750px; width: 90%; margin: 30px auto; padding: 25px 20px;
-
-pasted
-
-3:17 PM
-Q: Can you also share login.css, register.css, and news.css?
-A: login/register don't have dark mode yet
-
-3:17 PM
-Got it — I'll do assets.css dark mode now, then build login/register dark mode from scratch.
-
-
-Created 2 files, read a file
-Created 2 files, read a file
-Here's what to do with each file:
-
-assets-dark.css → paste its contents at the bottom of your assets.css
-
-login-register-dark.css → paste its contents at the bottom of both login.css and register.css
-
-Also make sure both login.html and register.html have these two things in <head>:
-
-html
-<script src="darkMode.js"></script>   <!-- no defer! -->
-<link rel="stylesheet" href="home.css">
-The home.css link is needed because the base dark mode body background override lives there. Without it, the page background won't switch dark even if the card styles do.
-
-When you're ready, share news.css and I'll do that one too.
-
-Assets dark
-Code · CSS 
-Login register dark
-Code · CSS 
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap'); :root { --primary-color: #3b2009; --secondary-
-
-pasted
-
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap'); :root { --primary-color: #3b2009; --secondary-
-
-pasted
-
 :root {
     --primary-color: #674019;
     --secondary-color: #e5da9c;
@@ -566,456 +32,107 @@ body {
 
 .main-news img {
     width: 100%;
-    height: 82vh;
-    border-radius: 12px;
-}
-
-.main-news h2 {
-    margin: 5px 0;
-    color: var(--primary-color);
-}
-
-.main-news a {
-    text-decoration: none;
-    color: var(--primary-color);
-}
-
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-}
-
-.card {
-  background: linear-gradient(145deg, var(--surface) 0%, var(--bg-2) 100%);
-    padding: 5px;
-    border-radius: 5px;
-    transition: 0.3s;
-
-}
-
-.card:hover {
-    transform: scale(1.03);
-}
-
-.card img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 5px;
-}
-
-.card h3 {
-    font-size: 16px;
-    margin-bottom: 5px;
-
-}
-
-.card a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-size: 14px;
-     margin-bottom: 5px;
-
-}
-
-.time {
-    font-size: 12px;
-    color: gray;
-        margin-bottom: 5px;
-
-}
-Show more
-3:18 PM
-Since login.css and register.css are identical, I'll write one shared dark mode block for both, plus a separate one for news.css.
-
-
-Created 3 files, ran a command, read a file
-Created 3 files, ran a command, read a file
-Here's where to paste each file:
-
-File	Paste into
-login-register-dark.css	Bottom of login.css and register.css
-news-dark.css	Bottom of news.css
-Also make sure every page's <head> has these two things, otherwise the dark class won't apply:
-
-html
-<script src="darkMode.js"></script>   <!-- no defer -->
-<link rel="stylesheet" href="home.css">
-The home.css link is needed on every page because it contains the base body.dark-mode background override. Login, register and news pages all need it even if they don't use home.css for anything else.
-
-Login register dark
-Code · CSS 
-News dark
-Code · CSS 
-last thing switch the logo to this 
-
-           `<img src="/media/darklogo.png" alt="Gold Tracker" />`;
-3:36 PM
-In header.html, find the darkMode.js script and add one line to swap the logo when dark mode is applied:
-
-
-Ran 2 commands, created a file, read a file
-Ran 2 commands, created a file, read a file
-Just replace your existing darkMode.js with this one. The two logo paths are defined at the top so they're easy to change:
-
-js
-const LIGHT_LOGO = "/media/logo.png";
-const DARK_LOGO  = "/media/darklogo.png";
-The logo swaps in three situations: on page load (if dark mode was already saved), when clicking Dark, and when clicking Light — so it always stays in sync.
-
-Darkmode
-JS 
-
-* { padding: 0; margin: 0; font-family: Arial, Helvetica, sans-serif; box-sizing: border-box; } body { background-color: #ede7c4; } /* ── Form Container ── */ .form-container { max-width: 750px; width: 90%; margin: 30px auto; padding: 25px 20px;
-
-pasted
-
-there is a conflict
-
-3:58 PM
-The conflict is that assets.css has a global input, select rule with light colors, and the dark mode overrides aren't specific enough to win. Fix is to add !important to the key dark mode input/select rules:
-
-
-Editing file
-Editing file
-Here's the corrected dark mode block — just replace the existing dark mode section at the bottom of your assets.css with this:
-
-
-Ran a command, created a file, read a file
-Ran a command, created a file, read a file
-The root cause: your assets.css has this global rule at the top:
-
-css
-input, select {
-  background-color: #fffaf0;
-  color: #674019;
-  border: 2px solid #674019;
-}
-This has no class selector so it beats body.dark-mode input in specificity when both have the same selector weight. Adding !important to the dark mode overrides guarantees they always win. Replace the old dark mode block at the bottom of assets.css with this new one.
-
-Assets dark
-Code · CSS 
-
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="stylesheet" href="/home.css"> <title>Header</title> <style> /* ══════════════════════════════════════ LIGHT MODE (default)
-
-pasted
-
-there is a conflit
-
-4:04 PM
-The conflict is that header.html still has its own dark mode <script> block AND CSS variables inside <style>, but darkMode.js is now handling everything. The header file should have no scripts at all — just the HTML structure and styles.
-
-
-Ran a command, created a file, read a file
-Ran a command, created a file, read a file
-What was conflicting and what was removed:
-
-Removed from header.html:
-
-The <script> block that called applyDark()/applyLight() — darkMode.js handles this now
-The flash-prevention <script> + html.dark-pre style — darkMode.js handles this too
-The big body.dark-mode block with all the home.css overrides — those belong in home.css, not the header
-Kept in header.html:
-
-Only the CSS variables (:root and body.dark-mode variable overrides) — these are fine here because they just define variable values, not logic
-The rule going forward: header.html = HTML + CSS only, zero JS. All dark mode logic lives exclusively in darkMode.js.
-
-Header
-Code · HTML 
-and here :root {
-    --primary-color: 
-#674019;
-    --secondary-color: 
-#e5da9c;
-    --btn-color: goldenrod;
-    --bg-primary: 
-#ede7c4;
-}
-body {
-    margin: 0;
-    font-family: Arial;
-    background: var(--bg-primary);
-    color: var(--primary-color);
-}
-#head {
-    padding: 20px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 20px;
-}
-.main-news {
-    margin-bottom: 30px;
-}
-.main-news img {
-    width: 100%;
     height: auto;
     max-height: 500px;
     object-fit: cover;
     border-radius: 12px;
 }
+
 .main-news h2 {
     margin: 5px 0;
     color: var(--primary-color);
 }
+
 .main-news a {
     text-decoration: none;
     color: var(--primary-color);
 }
+
 .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 15px;
 }
+
 .card {
     background: linear-gradient(145deg, var(--surface) 0%, var(--bg-2) 100%);
     padding: 5px;
     border-radius: 5px;
     transition: 0.3s;
 }
+
 .card:hover {
     transform: scale(1.03);
 }
+
 .card img {
     width: 100%;
     border-radius: 8px;
     margin-bottom: 5px;
 }
+
 .card h3 {
     font-size: 16px;
     margin-bottom: 5px;
 }
+
 .card a {
     color: var(--primary-color);
     text-decoration: none;
     font-size: 14px;
     margin-bottom: 5px;
 }
-.time {
-    font-size: 12px;
-    color: gray;
-    margin-bottom: 5px;
-<<<<<<< shahd
-}
-/* Dark Mode */
-body.dark-mode {
-  background-color: 
-#140d04 !important;
-  background-image: none !important;
-  color: 
-#e8d5b0 !important;
-}
-/* ── Page heading ── */
-body.dark-mode #head {
-  color: 
-#d4a843;
-}
-/* ── Main featured news ── */
-body.dark-mode .main-news h2 {
-  color: 
-#e8d5b0;
-}
-body.dark-mode .main-news a {
-  color: 
-#e8d5b0;
-}
-body.dark-mode .main-news a:hover {
-  color: 
-#d4a843;
-}
-/* ── News grid cards ── */
-body.dark-mode .card {
-  background: linear-gradient(145deg, 
-#1e1208 0%, 
-#261507 100%);
-  border: 1px solid rgba(212, 168, 67, 0.14);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
-}
-body.dark-mode .card h3 {
-  color: 
-#e8d5b0;
-}
-body.dark-mode .card a {
-  color: 
-#c4a87e;
-}
-body.dark-mode .card a:hover {
-  color: 
-#d4a843;
-}
-body.dark-mode .time {
-  color: 
-#7a6040;
-=======
->>>>>>> main
-}
 
-Show more
-4:05 PM
-You have a Git merge conflict — the <<<<<<< shahd, =======, and >>>>>>> main markers mean two branches edited the same file and Git doesn't know which to keep. You need to pick one version and remove the markers.
-
-Here's the resolved news.css keeping your dark mode code:
-
-
-Created a file, read a file
-Created a file, read a file
-Replace your entire news.css with this file. To avoid this happening again in Git, after merging always check for leftover <<<<<<<, =======, >>>>>>> markers — your code editor (VS Code) highlights them in red to make them easy to spot. You can also run:
-
-bash
-git diff --check
-to catch unresolved conflicts before committing.
-
-News
-Code · CSS 
-
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
-News · CSS
-Copy
-
-:root {
-    --primary-color: #674019;
-    --secondary-color: #e5da9c;
-    --btn-color: goldenrod;
-    --bg-primary: #ede7c4;
-}
- 
-body {
-    margin: 0;
-    font-family: Arial;
-    background: var(--bg-primary);
-    color: var(--primary-color);
-}
- 
-#head {
-    padding: 20px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--primary-color);
-}
- 
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 20px;
-}
- 
-.main-news {
-    margin-bottom: 30px;
-}
- 
-.main-news img {
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    object-fit: cover;
-    border-radius: 12px;
-}
- 
-.main-news h2 {
-    margin: 5px 0;
-    color: var(--primary-color);
-}
- 
-.main-news a {
-    text-decoration: none;
-    color: var(--primary-color);
-}
- 
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-}
- 
-.card {
-    background: linear-gradient(145deg, var(--surface) 0%, var(--bg-2) 100%);
-    padding: 5px;
-    border-radius: 5px;
-    transition: 0.3s;
-}
- 
-.card:hover {
-    transform: scale(1.03);
-}
- 
-.card img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 5px;
-}
- 
-.card h3 {
-    font-size: 16px;
-    margin-bottom: 5px;
-}
- 
-.card a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-size: 14px;
-    margin-bottom: 5px;
-}
- 
 .time {
     font-size: 12px;
     color: gray;
     margin-bottom: 5px;
 }
- 
+
 /* ══════════════════════════════════════════
    DARK MODE
 ══════════════════════════════════════════ */
- 
+
 body.dark-mode {
   background-color: #140d04 !important;
   background-image: none !important;
   color: #e8d5b0 !important;
 }
- 
+
 body.dark-mode #head {
   color: #d4a843;
 }
- 
+
 body.dark-mode .main-news h2 {
   color: #e8d5b0;
 }
- 
+
 body.dark-mode .main-news a {
   color: #e8d5b0;
 }
- 
+
 body.dark-mode .main-news a:hover {
   color: #d4a843;
 }
- 
+
 body.dark-mode .card {
   background: linear-gradient(145deg, #1e1208 0%, #261507 100%);
   border: 1px solid rgba(212, 168, 67, 0.14);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
- 
+
 body.dark-mode .card h3 {
   color: #e8d5b0;
 }
- 
+
 body.dark-mode .card a {
   color: #c4a87e;
 }
- 
+
 body.dark-mode .card a:hover {
   color: #d4a843;
 }
- 
+
 body.dark-mode .time {
   color: #7a6040;
 }
- 
