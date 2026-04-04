@@ -247,3 +247,94 @@ a:hover {
     border: 1.5px solid #c0392b !important;
     box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.12);
 }
+/* Dark Mode */
+/* ══════════════════════════════════════════
+   DARK MODE — paste at bottom of login.css
+   AND register.css (they share the same styles)
+══════════════════════════════════════════ */
+
+body.dark-mode {
+  background-color: #140d04 !important;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(212, 168, 67, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 0, 0, 0.30) 0%, transparent 50%) !important;
+  color: #e8d5b0 !important;
+}
+
+/* ── Title ── */
+body.dark-mode h1 {
+  color: #d4a843;
+}
+
+/* ── Card container ── */
+body.dark-mode .container {
+  background: rgba(22, 12, 4, 0.95);
+  border-color: rgba(212, 168, 67, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.50);
+}
+
+/* ── Tab buttons ── */
+body.dark-mode .btns-header {
+  border-bottom-color: rgba(212, 168, 67, 0.18);
+}
+body.dark-mode .btns-header button {
+  color: #c4a87e;
+  background: transparent;
+}
+body.dark-mode .btns-header button:hover {
+  background: rgba(212, 168, 67, 0.08);
+  color: #d4a843;
+}
+body.dark-mode .btns-header button.active {
+  color: #d4a843;
+  border-bottom-color: #d4a843;
+}
+
+/* ── Labels ── */
+body.dark-mode form label {
+  color: #c4a87e;
+}
+body.dark-mode .gender label {
+  color: #c4a87e;
+}
+body.dark-mode .pass label {
+  color: #c4a87e;
+}
+
+/* ── Inputs ── */
+body.dark-mode form input,
+body.dark-mode .fields {
+  background: rgba(42, 26, 8, 0.80);
+  border-color: rgba(212, 168, 67, 0.25);
+  color: #e8d5b0;
+}
+body.dark-mode form input::placeholder,
+body.dark-mode .fields::placeholder {
+  color: rgba(196, 168, 126, 0.45);
+}
+body.dark-mode form input:focus,
+body.dark-mode .fields:focus {
+  border-color: #d4a843;
+  box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.14);
+}
+
+/* ── Links ── */
+body.dark-mode a {
+  color: #c4a87e;
+}
+body.dark-mode a:hover,
+body.dark-mode .pass a:hover {
+  color: #d4a843;
+}
+body.dark-mode .pass a {
+  color: #c4a87e;
+}
+
+/* ── Error messages ── */
+body.dark-mode .error {
+  color: #e57373;
+}
+body.dark-mode .input-error {
+  border-color: #e57373 !important;
+  box-shadow: 0 0 0 3px rgba(229, 115, 115, 0.14);
+}

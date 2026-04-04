@@ -74,7 +74,6 @@ body {
 .card h3 {
     font-size: 16px;
     margin-bottom: 5px;
-
 }
 
 .card a {
@@ -82,12 +81,58 @@ body {
     text-decoration: none;
     font-size: 14px;
     margin-bottom: 5px;
-
 }
 
 .time {
     font-size: 12px;
     color: gray;
     margin-bottom: 5px;
+}
 
+/* ══════════════════════════════════════════
+   DARK MODE
+══════════════════════════════════════════ */
+
+body.dark-mode {
+  background-color: #140d04 !important;
+  background-image: none !important;
+  color: #e8d5b0 !important;
+}
+
+body.dark-mode #head {
+  color: #d4a843;
+}
+
+body.dark-mode .main-news h2 {
+  color: #e8d5b0;
+}
+
+body.dark-mode .main-news a {
+  color: #e8d5b0;
+}
+
+body.dark-mode .main-news a:hover {
+  color: #d4a843;
+}
+
+body.dark-mode .card {
+  background: linear-gradient(145deg, #1e1208 0%, #261507 100%);
+  border: 1px solid rgba(212, 168, 67, 0.14);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-mode .card h3 {
+  color: #e8d5b0;
+}
+
+body.dark-mode .card a {
+  color: #c4a87e;
+}
+
+body.dark-mode .card a:hover {
+  color: #d4a843;
+}
+
+body.dark-mode .time {
+  color: #7a6040;
 }
