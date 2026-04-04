@@ -20,12 +20,14 @@ fetch('header.html')
         const loggedInUser = sessionStorage.getItem("loggedInUser");
         const loginBtn = document.getElementById("login-btn");
         const registerBtn = document.getElementById("Register-btn");
+        const assetsbar=document.getElementById("asset-link");
 
        if (loggedInUser) {
-    const user = JSON.parse(loggedInUser);
+       const user = JSON.parse(loggedInUser);
+       assetsbar.innerHTML=`  <li><a id="asset-link" href="/assets.html">My Assets</a></li>`;
 
-    loginBtn.style.display = "none";
-    registerBtn.style.display = "none";
+      loginBtn.style.display = "none";
+       registerBtn.style.display = "none";
 
     const userInfo = document.createElement("div");
     userInfo.id = "user-info";
