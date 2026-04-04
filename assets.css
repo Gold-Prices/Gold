@@ -355,7 +355,7 @@ select {
 .gold-card img {
     width: 100%;
     height: 180px;
-    object-fit: cover;
+    object-fit: over;
     border-radius: 10px;
 }
 
@@ -463,6 +463,7 @@ select {
 }
 
 .profit-loss small {
-    font-weight: normal;
-    font-size: 12px;
+
+  font-weight: normal;
+  font-size: 12px;
 }

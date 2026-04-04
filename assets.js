@@ -1,6 +1,16 @@
 // Get form
 const form = document.getElementById('assetForm'); 
 
+// Get logged-in user
+const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+if (!loggedInUser) {
+  // Redirect to login if not logged in
+  window.location.href = 'login.html';
+  throw new Error('User not logged in');
+}
+const userEmail = loggedInUser.email;
+const storageKey = 'goldAssets_' + userEmail;
+
 // Get inputs
 const saveButton       = document.getElementById('saveBtn');
 const assetTypeInput    = document.getElementById('assetType');
@@ -181,7 +191,7 @@ function renderCard(asset) {
 }
 function saveToLocalStorage(newAsset) {
     // 1. Retrieve the existing string data from storage
-    const existingData = localStorage.getItem('goldAssets');
+    const existingData = localStorage.getItem(storageKey);
 
     // 2. Convert the string back into a JS Array (or start with an empty one if null)
     let assetsArray = existingData ? JSON.parse(existingData) : [];
@@ -190,20 +200,20 @@ function saveToLocalStorage(newAsset) {
     assetsArray.push(newAsset);
 
     // 4. Turn the updated list back into a string and save it to the browser
-    localStorage.setItem('goldAssets', JSON.stringify(assetsArray));
+    localStorage.setItem(storageKey, JSON.stringify(assetsArray));
     
     console.log("Asset saved successfully! Total items:", assetsArray.length);
 }
 function deleteAsset(id) {
     // 1. Load current assets
-    const existingData = localStorage.getItem('goldAssets');
+    const existingData = localStorage.getItem(storageKey);
     let assetsArray = existingData ? JSON.parse(existingData) : [];
 
     // 2. Filter out the deleted one
     assetsArray = assetsArray.filter(asset => asset.id !== id);
 
     // 3. Save back to localStorage
-    localStorage.setItem('goldAssets', JSON.stringify(assetsArray));
+    localStorage.setItem(storageKey, JSON.stringify(assetsArray));
 
     // 4. Remove the card from the DOM
     document.getElementById('assetList').innerHTML = '';
@@ -232,7 +242,7 @@ function filterAssets() {
   const typeVal     = searchType.value;
 
   // Load all assets from localStorage
-  const existingData = localStorage.getItem('goldAssets');
+  const existingData = localStorage.getItem(storageKey);
   const assetsArray  = existingData ? JSON.parse(existingData) : [];
 
   // AND logic — asset must pass every active filter
@@ -306,7 +316,7 @@ function calculateProfitLoss(asset) {
 
 // Load existing assets on page start
 window.addEventListener('load', function () {
-    const existingData = localStorage.getItem('goldAssets');
+    const existingData = localStorage.getItem(storageKey);
     if (existingData) {
         const assetsArray = JSON.parse(existingData);
         assetsArray.forEach(asset => renderCard(asset));
