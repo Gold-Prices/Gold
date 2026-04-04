@@ -462,11 +462,7 @@ select {
     font-size: 13px;
 }
 
-.profit-loss small {
-    font-weight: normal;
-    font-size: 12px;
-}
-/* dark Mode */
+
 body.dark-mode {
   background-color: #140d04 !important;
   color: #e8d5b0 !important;
@@ -480,19 +476,19 @@ body.dark-mode .searchAssets {
 }
  
 body.dark-mode #searchInput {
-  background-color: #2a1a08;
-  color: #e8d5b0;
-  border-color: rgba(212, 168, 67, 0.35);
+  background-color: #2a1a08 !important;
+  color: #e8d5b0 !important;
+  border-color: rgba(212, 168, 67, 0.35) !important;
 }
 body.dark-mode #searchInput::placeholder {
-  color: #8a6a3a;
+  color: #8a6a3a !important;
 }
  
 body.dark-mode #searchKarat,
 body.dark-mode #searchType {
-  background-color: #2a1a08;
-  color: #d4a843;
-  border: 1px solid rgba(212, 168, 67, 0.30);
+  background-color: #2a1a08 !important;
+  color: #d4a843 !important;
+  border: 1px solid rgba(212, 168, 67, 0.30) !important;
 }
  
 body.dark-mode #add-asset-btn {
@@ -502,30 +498,31 @@ body.dark-mode #add-asset-btn {
  
 /* ── Form container ── */
 body.dark-mode .form-container {
-  background-color: #1e1208;
+  background-color: #1e1208 !important;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.50);
 }
  
 body.dark-mode h2 {
-  color: #d4a843;
+  color: #d4a843 !important;
 }
  
 body.dark-mode .form-group label {
-  color: #c4a87e;
+  color: #c4a87e !important;
 }
  
+/* ── Inputs & selects (needs !important to beat the global rule) ── */
 body.dark-mode input,
 body.dark-mode select {
-  background-color: #2a1a08;
-  color: #e8d5b0;
-  border-color: rgba(212, 168, 67, 0.35);
+  background-color: #2a1a08 !important;
+  color: #e8d5b0 !important;
+  border-color: rgba(212, 168, 67, 0.35) !important;
 }
 body.dark-mode input::placeholder {
-  color: #8a6a3a;
+  color: #8a6a3a !important;
 }
 body.dark-mode select option {
-  background-color: #2a1a08;
-  color: #e8d5b0;
+  background-color: #2a1a08 !important;
+  color: #e8d5b0 !important;
 }
  
 /* ── Gold cards ── */
@@ -534,42 +531,42 @@ body.dark-mode #assetList {
 }
  
 body.dark-mode .gold-card {
-  background-color: #1e1208;
-  border-color: rgba(212, 168, 67, 0.20);
+  background-color: #1e1208 !important;
+  border-color: rgba(212, 168, 67, 0.20) !important;
   box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.40);
 }
  
 body.dark-mode .gold-card h3 {
-  color: #d4a843;
+  color: #d4a843 !important;
 }
  
 body.dark-mode .gold-card p {
-  color: #c4a87e;
+  color: #c4a87e !important;
 }
  
 body.dark-mode .gold-card a,
 body.dark-mode .delete-btn {
-  background-color: #2a1a08;
-  color: #d4a843;
-  border: 1px solid rgba(212, 168, 67, 0.30);
+  background-color: #2a1a08 !important;
+  color: #d4a843 !important;
+  border: 1px solid rgba(212, 168, 67, 0.30) !important;
 }
 body.dark-mode .gold-card a:hover,
 body.dark-mode .delete-btn:hover {
-  background-color: #b8862a;
-  color: #fff;
+  background-color: #b8862a !important;
+  color: #fff !important;
 }
  
 /* ── Profit / Loss badges ── */
 body.dark-mode .profit-loss.profit {
-  background-color: #0f2d18;
-  color: #4caf7d;
+  background-color: #0f2d18 !important;
+  color: #4caf7d !important;
 }
 body.dark-mode .profit-loss.loss {
-  background-color: #2d0f13;
-  color: #e57373;
+  background-color: #2d0f13 !important;
+  color: #e57373 !important;
 }
 body.dark-mode .profit-loss.neutral {
-  background-color: #1e1a14;
-  color: #c4a87e;
+  background-color: #1e1a14 !important;
+  color: #c4a87e !important;
 }
  
