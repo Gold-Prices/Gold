@@ -31,7 +31,7 @@ form.addEventListener("submit", function(e) {
     document.querySelectorAll(".error").forEach(el => el.textContent = "");
     document.querySelectorAll(".fields").forEach(el => el.classList.remove("input-error"));
 
-    function showError(input, message) {
+    function showError(input, message) { 
         input.classList.add("input-error");
         input.nextElementSibling.textContent = message;
         isValid = false;
