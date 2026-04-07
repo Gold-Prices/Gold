@@ -116,6 +116,7 @@ form.addEventListener('submit', function(event) {
   }
 
 // --- Image ---
+
 const imageFile = imageInput.files[0];
 if (!imageFile) {
   showError(imageError, 'Please select an image.');
