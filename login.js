@@ -1,10 +1,8 @@
 const loginBtn = document.querySelector(".btns-header button:nth-child(1)");
 const registerBtn = document.querySelector(".btns-header button:nth-child(2)");
 
-// خلي زر Login active
 loginBtn.classList.add("active");
 
-// تنقل بين الصفحات
 loginBtn.addEventListener("click", () => {
     window.location.href = "login.html";
 });

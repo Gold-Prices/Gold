@@ -81,9 +81,9 @@ function showNews(articles) {
 
         div.innerHTML = `
             <img src="${a.image}"
-              class="w-100" 
-               style="height:180px; object-fit:cover; border-radius:8px 8px 0 0;"
-               onerror="this.src='/media/fallbackImge.avif'">
+                class="w-100" 
+                style="height:180px; object-fit:cover; border-radius:8px 8px 0 0;"
+                onerror="this.src='/media/fallbackImge.avif'">
             <h3>${a.title}</h3>
             <div class="time">${new Date(a.publishedAt).toLocaleString()}</div>
             <a href="${a.url}" target="_blank">Read more →</a>
