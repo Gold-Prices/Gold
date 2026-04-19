@@ -1,8 +1,8 @@
 
 (function () {
  
-  const LIGHT_LOGO = "/media/logo.png";
-  const DARK_LOGO  = "/media/darklogo.png";
+  const LIGHT_LOGO = "media/logo.png";
+  const DARK_LOGO  = "media/darklogo.png";
  
   // ── 1. Apply saved theme IMMEDIATELY (no flash) ──
   if (localStorage.getItem("theme") === "dark") {
