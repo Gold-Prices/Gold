@@ -67,17 +67,17 @@
           </div>
 
           <div class="rate-card">
-            <div class="rate-label"><img src="/media/rishadi-removebg-preview.png" width="30px"> Rashadi</div>
+            <div class="rate-label"><img src="media/rishadi-removebg-preview.png" width="30px"> Rashadi</div>
             <div class="rate-value" id="price-rashadi">-</div>
           </div>
 
           <div class="rate-card">
-            <div class="rate-label"><img src="/media/enflish-removebg-preview.png" width="30px"> English</div>
+            <div class="rate-label"><img src="media/enflish-removebg-preview.png" width="30px"> English</div>
             <div class="rate-value" id="price-english">-</div>
           </div>
 
           <div class="rate-card">
-            <div class="rate-label"><img src="/media/bargold.png" width="30px"> Gold Bar</div>
+            <div class="rate-label"><img src="media/bargold.png" width="30px"> Gold Bar</div>
             <div class="rate-value" id="price-bar">-</div>
           </div>
 
@@ -107,14 +107,6 @@
     return;
   }
 
-  const fallbackImages = [
-
-    "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600",
-  ];
-
-  function getRandomFallback() {
-    return fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
-  }
 
   const articles = JSON.parse(savedNews).slice(0, 3);
 
@@ -130,7 +122,7 @@
           <img src="${a.image}" alt="${a.title}" 
                class="w-100" 
                style="height:180px; object-fit:cover; border-radius:8px 8px 0 0;"
-               onerror="this.src='/media/fallbackImge.avif'">
+               onerror="this.src='media/fallbackImge.avif'">
           <div class="p-3">
             <h6 class="news-card-title">${a.title}</h6>
             <div class="news-card-time text-muted small mt-2">

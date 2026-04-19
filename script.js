@@ -10,7 +10,7 @@ fetch('header.html')
             const href = link.getAttribute("href");
             if (
                 href === path ||
-                (href === "/index.html" && (path === "/" || path === "/index.html"))
+                (href === "index.html" && (path === "/" || path === "index.html"))
             ) {
                 link.classList.add("active");
             }
@@ -24,7 +24,7 @@ fetch('header.html')
 
        if (loggedInUser) {
        const user = JSON.parse(loggedInUser);
-       assetsbar.innerHTML=`  <li><a id="asset-link" href="/assets.html">My Assets</a></li>`;
+       assetsbar.innerHTML=`  <li><a id="asset-link" href="assets.html">My Assets</a></li>`;
 
       loginBtn.style.display = "none";
        registerBtn.style.display = "none";
@@ -40,7 +40,7 @@ fetch('header.html')
 
     document.getElementById("logout-btn").addEventListener("click", () => {
         sessionStorage.removeItem("loggedInUser");
-        window.location.href = "/index.html";
+        window.location.href = "index.html";
     });
 }
     });
