@@ -27,7 +27,7 @@
 }
 
 body {
-    background-color:    rgba(213, 185, 148, 0.92);
+  background-color:    rgba(213, 185, 148, 0.92);
   color: var(--text);
   font-family: "DM Sans", sans-serif;
   min-height: 100vh;
